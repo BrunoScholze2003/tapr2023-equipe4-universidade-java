@@ -20,9 +20,12 @@ public class Curso {
     public void setId(String id) {
         this.id = id;
     }
-    public String getName() {
+    public String getNome() {
         return name;
     }
-    public void setName(String name) {
-        this.placa = name;
+    public void setNome(String name) {
+        this.name = name;
     }
+}
+
+    

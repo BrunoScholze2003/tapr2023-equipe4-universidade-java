@@ -47,7 +47,7 @@ public class CursoServiceImpl implements CursoService{
             var cursoAntigo = buscaCursoAntigo.get();
 
             //Atualizar cada atributo do objeto antigo 
-            cursoAntigo.setPlaca(curso.getPlaca());
+            cursoAntigo.setNome(curso.getNome());
             
             return repository.save(cursoAntigo);
         }
@@ -65,5 +65,11 @@ public class CursoServiceImpl implements CursoService{
             return curso;
         }
         return null;
+    }
+
+    @Override
+    public Curso update(Curso curso) {
+        return repository.save(curso);
+        
     }
 }

@@ -1,0 +1,8 @@
+version: 1
+common:
+  resourcesPath: ./components/
+apps:
+  - appID: tapr-2023-equipe4-curso-java
+    appDirPath: ./target/
+    appPort: 8080
+    command: ["java", "-jar", "NOMEDOARQUIVOJARCOMOPROJETO-SNAPSHOT.jar"]

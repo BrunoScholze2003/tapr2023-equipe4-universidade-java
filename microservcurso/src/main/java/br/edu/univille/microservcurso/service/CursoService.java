@@ -7,5 +7,6 @@ public interface CursoService {
     public Curso getById(String id);
     public Curso saveNew(Curso curso);
     public Curso update(String id, Curso curso);
+    public Curso update(Curso curso);
     public Curso delete(String id);
 }
