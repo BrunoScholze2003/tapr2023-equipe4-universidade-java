@@ -62,6 +62,20 @@
 			<artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
 			<version>5.5.0</version>
 		</dependency>
+
+		  <dependency>
+        <groupId>io.dapr</groupId>
+
+        <artifactId>dapr-sdk</artifactId>
+        	<version>1.10.0</version>
+        </dependency>
+        <!-- Dapr's SDK integration with SpringBoot (optional). -->
+        <dependency>
+      		<groupId>io.dapr</groupId>
+      		<artifactId>dapr-sdk-springboot</artifactId>
+      		<version>1.10.0</version>
+    	</dependency>
+
 	</dependencies>
 
 	<build>

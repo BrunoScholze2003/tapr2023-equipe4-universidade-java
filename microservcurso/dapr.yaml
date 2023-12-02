@@ -1,8 +1,8 @@
 version: 1
 common:
-  resourcesPath: ./components/
+  resourcesPath: ./component/
 apps:
   - appID: tapr-2023-equipe4-curso-java
     appDirPath: ./target/
     appPort: 8080
-    command: ["java", "-jar", "NOMEDOARQUIVOJARCOMOPROJETO-SNAPSHOT.jar"]
+    command: ["/usr/lib/jvm/java-1.17.0-openjdk-amd64/bin/java", "-jar", "microservmatricula-0.0.1-SNAPSHOT.jar"]
