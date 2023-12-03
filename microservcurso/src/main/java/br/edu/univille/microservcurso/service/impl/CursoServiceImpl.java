@@ -4,14 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import br.edu.univille.microservcurso.entity.Curso;
+import br.edu.univille.microservcurso.entity.Matricula;
 import br.edu.univille.microservcurso.repository.CursoRepository;
 import br.edu.univille.microservcurso.service.CursoService;
+import io.dapr.client.DaprClient;
+import io.dapr.client.DaprClientBuilder;
 
 @Service
 public class CursoServiceImpl implements CursoService{
+    private DaprClient client = new DaprClientBuilder().build();
+    @Value("${app.component.topic.curso}")
+    private String TOPIC_NAME;
+    @Value("${app.component.service}")
+    private String PUBSUB_NAME;
 
     @Autowired
     private CursoRepository repository;
@@ -37,7 +46,9 @@ public class CursoServiceImpl implements CursoService{
     @Override
     public Curso saveNew(Curso curso) {
         curso.setId(null);
-        return repository.save(curso);
+        curso = repository.save(curso);
+        publicarAtualizacao(curso);
+        return curso;
     }
 
     @Override
@@ -47,9 +58,8 @@ public class CursoServiceImpl implements CursoService{
             var cursoAntigo = buscaCursoAntigo.get();
 
             //Atualizar cada atributo do objeto antigo 
-            cursoAntigo.setNome(curso.getNome());
+            cursoAntigo.setName(curso.getName());
             
-            return repository.save(cursoAntigo);
         }
         return null;
     }
@@ -71,5 +81,12 @@ public class CursoServiceImpl implements CursoService{
     public Curso update(Curso curso) {
         return repository.save(curso);
         
+    }
+
+    private void publicarAtualizacao(Curso curso){
+        client.publishEvent(
+                    PUBSUB_NAME,
+                    TOPIC_NAME,
+                    curso).block();
     }
 }

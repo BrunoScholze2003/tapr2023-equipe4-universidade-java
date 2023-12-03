@@ -79,15 +79,5 @@ public class CursoAPIController {
             new ResponseEntity<Curso>
             (curso, HttpStatus.OK);
     }
-
-    @Topic(name = "$    {app.component.topic.curso}", pubsubName = "${app.component.service}")
-    @PostMapping(path = "/event", consumes = MediaType.ALL_VALUE)
-    public ResponseEntity<Curso> atualizarCurso(@RequestBody(required = false) CloudEvent<Curso> cloudEvent){
-        var curso = service.update(cloudEvent.getData());
-        System.out.println("EVENT" + curso.getNome());
-        return 
-            new ResponseEntity<Curso>
-            (curso, HttpStatus.OK);
-    }
     
 }

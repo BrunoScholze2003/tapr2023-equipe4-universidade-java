@@ -10,8 +10,9 @@ import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 public class Curso {
     @Id
     @GeneratedValue
-    public String id;
     @PartitionKey
+    
+    public String id;
     public String name;
 
     public String getId() {
@@ -20,10 +21,10 @@ public class Curso {
     public void setId(String id) {
         this.id = id;
     }
-    public String getNome() {
+    public String getName() {
         return name;
     }
-    public void setNome(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 }
